@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrestaYa.Views.tablaPrestamo">
+
+    <Grid
+        RowDefinitions="140,55,*"
+        BackgroundColor="White"
+                 >
+
+
+        <Frame BackgroundColor="#4794AE" Margin="20,10,20,20" HasShadow="False">
+            <Grid Grid.Row="0"
+HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="CenterAndExpand">
+
+                <StackLayout>
+                    <Image Source="logo1"
+               HeightRequest="40"
+               WidthRequest="250"
+               />
+
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+
+        <Frame Grid.Row="1"
+                    CornerRadius="200"
+               HasShadow="False"
+               Margin="20,0,20,0"
+               Padding="0"
+               BorderColor="Black">
+            <SearchBar Placeholder="Buscar" 
+                       Keyboard="Chat"
+                       TextChanged="SearchBar_TextChanged" 
+                       MaxLength="20" 
+                       FontSize="18" 
+                       HeightRequest="40"
+                       CancelButtonColor="Black"
+                       PlaceholderColor="black"
+                       TextColor="Black"/>
+
+
+        </Frame>
+        <Frame
+    Grid.Row="2"
+    HasShadow="False"
+    >
+            <StackLayout>
+                <Label
+Text="Prestamos"
+FontSize="25"
+TextColor="Black"
+FontAttributes="Italic,Bold"
+HorizontalOptions="CenterAndExpand"/>
+
+                <ListView   ItemsSource="{Binding listViewprestamo}"
+                                HasUnevenRows="True"
+
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            x:Name="ListViewName"
+            RefreshCommand="{Binding refreshcommand}"
+            
+
+                    Margin="0,20,0,0 "
+                    SeparatorColor="Black"
+                    
+                    >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10,5,10,5"
+                                     VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Tasa}"  FontSize="20" FontAttributes="Bold" TextColor="Black" Margin="0"/>
+                                    <Label Text="{Binding Monto}" FontSize="18" TextColor="Black" Margin="0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

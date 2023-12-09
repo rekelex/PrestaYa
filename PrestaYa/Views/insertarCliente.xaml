@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrestaYa.Views.insertarCliente">
+
+
+    <Grid
+RowDefinitions="240,*"
+BackgroundColor="White"
+         >
+
+
+
+
+        <Frame BackgroundColor="#4794AE" Margin="20,10,20,20" HasShadow="False">
+            <Grid Grid.Row="0"
+HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="CenterAndExpand">
+
+                <StackLayout>
+                    <Image Source="logo1"
+   HeightRequest="50"
+   WidthRequest="275"
+   Margin="0,0,0,25"/>
+                    <Label
+Text="Agregar Cliente "
+FontSize="25"
+TextColor="Black"
+FontAttributes="Italic,Bold"
+HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+            </Grid>
+        </Frame>
+        
+        <StackLayout Grid.Row="1"
+                 
+                     Margin="20,8,20,20">
+
+            <Entry x:Name="Txtnombre"
+               Placeholder="Nombre"
+               Text="{Binding Txtnombre, Mode=TwoWay}"
+                   Margin="10,5,10,5"
+                   PlaceholderColor="Black"
+                   />
+            <Entry 
+               Placeholder="Telefono"
+               Keyboard="Numeric"
+                MaxLength="10"
+               Text="{Binding Txttelefono, Mode=TwoWay}"
+                Margin="10,5,10,5"
+                PlaceholderColor="Black"
+                />
+            <Entry 
+   Placeholder="Direccion"
+   Keyboard="Chat"
+   Text="{Binding Txtdireccion, Mode=TwoWay}"
+    Margin="10,5,10,5"
+    PlaceholderColor="Black"
+                />
+            <Picker
+                TextColor="Black"
+                Title="Estado"
+                TitleColor="Black"
+                Margin="10,5,10,5"/>
+
+            <Button VerticalOptions="Center"
+Text="Guardar"
+Padding="8"
+TextColor="AliceBlue"
+FontSize="18"
+              FontAttributes="Bold,Italic"
+TextTransform="None"
+BackgroundColor="black"
+CornerRadius="30"
+                    Margin="20,20,20,0"
+                Command="{Binding InsertCommand}"
+                />
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="PrestaYa.Views.index"
+             NavigationPage.HasNavigationBar="False">
+    <Grid BackgroundColor="#4794AE" >
+        <StackLayout>
+            <Image Source="logo1.png"
+       HeightRequest="55"
+       WidthRequest="20"
+                   Margin="0,70,0,20"></Image>
+            <forms:AnimationView
+                              x:Name="animacion" Grid.Row="0"
+                              Animation="loan-ini.json"
+                              HeightRequest="310"
+                              WidthRequest="100"
+                              AutoPlay="true"
+                              RepeatMode="Infinite"
+                              VerticalOptions="Center"
+                Margin="0,0,0,0"/>
+            
+                
+                
+                <Label
+Text="Prestamos al instante, tranquilidad inmediata."
+HorizontalOptions="Center"
+TextColor="black"
+FontSize="25"
+                   FontAttributes="Italic"
+HorizontalTextAlignment="Center"
+                   Padding="20"/>
+
+
+
+            <Grid VerticalOptions="EndAndExpand"
+                 Margin="50,0,50,50">
+                <StackLayout>
+                   
+                    <Button
+ Text="Comenzar"
+ Padding="8"
+ TextColor="AliceBlue"
+ FontSize="23"
+ FontAttributes="bold,Italic"
+ TextTransform="None"
+ BackgroundColor="black"
+CornerRadius="30"
+                     Command="{Binding Startcommand}"/>
+                </StackLayout>
+
+
+            </Grid>
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

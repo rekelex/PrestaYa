@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="PrestaYa.Views.signUp">
+    <Grid BackgroundColor="White"
+          RowDefinitions="*,*,190,10">
+        <Frame BackgroundColor="#fff" Margin="10,0,10,10" HasShadow="False">
+            <Grid Grid.Row="0">
+                <Image Source="logo1"
+                   WidthRequest="250"
+                   HeightRequest="100"
+                   Margin="20,0,20,170"/>
+                <forms:AnimationView
+x:Name="animacion"
+Animation="login.json"
+HeightRequest="100"
+WidthRequest="180"
+AutoPlay="true"
+RepeatMode="Infinite"
+VerticalOptions="Center"/>
+
+                <Label
+            
+     Text="Cuenta Nueva"
+     VerticalOptions="EndAndExpand"
+     HorizontalOptions="CenterAndExpand"
+     FontAttributes="Italic"
+     FontSize="29"
+     TextColor="Black"/>
+
+            </Grid>
+        </Frame>
+        <Grid VerticalOptions="CenterAndExpand"
+              Margin="20,-30,20,0"
+              Grid.Row="1">
+
+
+            <StackLayout>
+                <Entry
+            Placeholder="Nombre Completo"
+            x:Name="txtname"
+            PlaceholderColor="Black"
+            ReturnType="Next"
+            ClearButtonVisibility="WhileEditing"
+            Margin="10,5,10,5"
+            />
+                <Entry
+    Placeholder="Correo electronico"
+    x:Name="txtemail"
+            Keyboard="Text"
+            PlaceholderColor="Black"
+            ReturnType="Next"
+            ClearButtonVisibility="WhileEditing"
+            Margin="10,5,10,5"
+            />
+                <Entry
+    Placeholder="Contraseña"
+            x:Name="txtpassword"
+            IsPassword="True"
+            PlaceholderColor="Black"
+            ReturnType="Next"
+            ClearButtonVisibility="WhileEditing"
+            Margin="10,5,10,5"
+/>
+                <Entry
+    Placeholder="Confirme la contraseña"
+      x:Name="txtconfirmpswrd"
+            IsPassword="True"
+            PlaceholderColor="Black"
+            ReturnType="Done"
+            ClearButtonVisibility="WhileEditing"
+            Margin="10,5,10,5"
+
+            />
+            </StackLayout>
+
+        </Grid>
+        <Grid Grid.Row="2"
+              >
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             Margin="35,0,40,0"
+                             >
+                    <CheckBox
+                    Color="Black"
+                    x:Name="terms"
+
+                    />
+
+                    <Label
+                        Text="Aceptar los"
+                        FontSize="17"
+                        TextColor="Black"/>
+                    <Label
+                        Text="Terminos y Condiciones"
+                        TextColor="Blue"
+                        FontSize="17"
+                        TextDecorations="Underline">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="termsconds"
+                                Tapped="terms_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Button
+                     Text="Registrar"
+ Padding="8"
+ TextColor="AliceBlue"
+ FontSize="23"
+                    Margin="25"
+ FontAttributes="bold,Italic"
+ TextTransform="None"
+ BackgroundColor="Black"
+CornerRadius="30"
+            x:Name="txtbutton_reg"
+            Clicked="Btnsignup_Clicked"/>
+              
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrestaYa.Views.tablaClientes"
+             >
+
+
+    <Grid
+        RowDefinitions="80,55,*"
+        BackgroundColor="White"
+                 >
+
+
+        <Frame BackgroundColor="#4794AE" Margin="20,0,20,5" Padding="0" HeightRequest="30" HasShadow="False">
+            <Grid Grid.Row="0"
+HorizontalOptions="Center"
+                  VerticalOptions="Center">
+
+                <StackLayout>
+                    <Image Source="logo1"
+               HeightRequest="35"
+               WidthRequest="250"
+                          
+               />
+                   
+
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+
+        <Frame Grid.Row="1"
+                    CornerRadius="200"
+               HasShadow="False"
+               Padding="0"
+               Margin="18,5,18,5"
+               BorderColor="Black">
+            <SearchBar Placeholder="Buscar" 
+                       Keyboard="Chat"
+                       TextChanged="SearchBar_TextChanged" 
+                       MaxLength="20" 
+                       FontSize="18" 
+                       HeightRequest="40"
+                       CancelButtonColor="Black"
+                       PlaceholderColor="black"
+                       TextColor="Black"
+                       Shell.BackgroundColor="White"/>
+            
+
+        </Frame>
+<Frame
+    Grid.Row="2"
+    HasShadow="False"
+    >
+            <StackLayout>
+                <Label
+Text="Clientes"
+FontSize="25"
+TextColor="Black"
+HorizontalOptions="CenterAndExpand"/>
+
+                <ListView   ItemsSource="{Binding listViewClientes}"
+                                HasUnevenRows="True"
+
+            IsPullToRefreshEnabled="True"
+            IsRefreshing="{Binding IsRefreshing}"
+            x:Name="ListViewName"
+            RefreshCommand="{Binding refreshcommand}"
+            
+
+                    Margin="0,5,0,0 "
+                    SeparatorColor="Black"
+                    
+                   ItemSelected="ListViewName_ItemSelected" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="10,5,10,5"
+                                     VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding Nombre}"  FontSize="20" FontAttributes="Bold" TextColor="Black" Margin="0"/>
+                            <Label Text="{Binding Telefono}" FontSize="18" TextColor="Black" Margin="0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+                <Frame Grid.Row="3"
+       HasShadow="False"
+       BackgroundColor="White">
+                    <Button
+    VerticalOptions="Center"
+    Text="Agregar cliente"
+    Padding="8"
+    TextColor="AliceBlue"
+    FontSize="18"
+                  FontAttributes="Bold,Italic"
+    TextTransform="None"
+    BackgroundColor="black"
+    CornerRadius="30"
+                      Command="{Binding addclientcommand}"
+    
+    />
+                </Frame>
+            </StackLayout>
+        </Frame>
+        
+    </Grid>
+    
+    
+</ContentPage>

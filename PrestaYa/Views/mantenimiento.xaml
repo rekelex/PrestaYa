@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrestaYa.Views.mantenimiento">
+    <Grid RowDefinitions="230,*,*" BackgroundColor="White">
+
+        <Frame BackgroundColor="#4794AE" Margin="10,10,10,10">
+            <Grid Grid.Row="0"
+    HorizontalOptions="CenterAndExpand">
+
+                <StackLayout>
+                    <Image Source="logo1"
+                   HeightRequest="100"
+                   WidthRequest="275"
+                   Margin="0,5,0,0"/>
+                    <Label
+                Text="Mantenimiento"
+                FontSize="30"
+                TextColor="Black"
+                FontAttributes="Italic,Bold"
+                HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+        <Grid Grid.Row="1" VerticalOptions="CenterAndExpand"
+              >
+            <StackLayout Margin="30,30,0,0">
+                <StackLayout Orientation="Horizontal"
+                      Margin="0,0,0,20"
+
+                      >
+                    <Image Source="client"
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    />
+                    <Label
+                  Text="Clientes"
+                 TextColor="Black"
+                 FontSize="20"
+                 FontAttributes="Italic"
+                 Margin="20,15,0,0"/>
+
+
+                    <StackLayout.GestureRecognizers>
+
+
+                        <TapGestureRecognizer Command="{Binding clientecommand}"/>
+                    </StackLayout.GestureRecognizers>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                      Margin="0,0,0,20">
+                    <Image Source="prestamo"
+                     WidthRequest="60"
+                    HeightRequest="60"/>
+                    <Label
+                 Text="Prestamos"
+                 TextColor="Black"
+                 FontSize="20"
+                 FontAttributes="Italic"
+                 Margin="20,15,0,0"/>
+
+
+                    <StackLayout.GestureRecognizers>
+
+
+                        <TapGestureRecognizer Command="{Binding prestamocommand}"/>
+                    </StackLayout.GestureRecognizers>
+
+
+                </StackLayout>
+                
+
+
+            </StackLayout>
+
+        </Grid>
+        
+
+    </Grid>
+</ContentPage>
