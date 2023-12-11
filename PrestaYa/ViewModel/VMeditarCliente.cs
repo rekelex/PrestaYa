@@ -63,7 +63,7 @@ namespace PrestaYa.ViewModel
         public bool Txtstatus
         {
             get { return status; }
-            set { SetValue(ref status, value); }
+            set { if (status != value) { status = value; OnPropertyChanged(nameof(Txtstatus)); } }
         }
         #endregion
         #region Procesos

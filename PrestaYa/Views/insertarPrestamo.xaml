@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PrestaYa.Views.insertarCliente">
+             x:Class="PrestaYa.Views.insertarPrestamo">
 
 
-    <Grid
+        <Grid
 RowDefinitions="240,*"
 BackgroundColor="White"
          >
@@ -12,61 +12,65 @@ BackgroundColor="White"
 
 
 
-        <Frame BackgroundColor="#4794AE" Margin="20,10,20,20" HasShadow="False">
-            <Grid Grid.Row="0"
+            <Frame BackgroundColor="#4794AE" Margin="20,10,20,20" HasShadow="False">
+                <Grid Grid.Row="0"
 HorizontalOptions="CenterAndExpand"
                   VerticalOptions="CenterAndExpand">
 
-                <StackLayout>
-                    <Image Source="logo1"
+                    <StackLayout>
+                        <Image Source="logo1"
    HeightRequest="50"
    WidthRequest="275"
    Margin="0,0,0,25"/>
-                    <Label
-Text="Agregar Cliente "
+                        <Label
+Text="Agregar Prestamo "
 FontSize="25"
 TextColor="Black"
 FontAttributes="Italic,Bold"
 HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
-            </Grid>
-        </Frame>
-        
-        <StackLayout Grid.Row="1"
+                </Grid>
+            </Frame>
+
+            <StackLayout Grid.Row="1"
                  
                      Margin="20,8,20,20">
+            <Label Text="Monto (DOP$)" TextColor="Black"/>
 
-            <Entry x:Name="Txtnombre"
-               Placeholder="Nombre"
-               Text="{Binding Txtnombre, Mode=TwoWay}"
+            <Entry x:Name="Txtmonto"
+               Placeholder="Monto"
+               Text="{Binding Txtmonto, Mode=TwoWay}"
+                       Keyboard="Numeric"
                    Margin="10,5,10,5"
                    PlaceholderColor="Black"
                    />
+            <Label Text="Tasa (%)" TextColor="Black"/>
             <Entry 
-               Placeholder="Telefono"
+               Placeholder="Tasa"
                Keyboard="Numeric"
                 MaxLength="10"
-               Text="{Binding Txttelefono, Mode=TwoWay}"
+               Text="{Binding Txttasa, Mode=TwoWay}"
                 Margin="10,5,10,5"
                 PlaceholderColor="Black"
                 />
+            <Label Text="Periodicidad (Meses)" TextColor="Black"/>
             <Entry 
-   Placeholder="Direccion"
-   Keyboard="Chat"
-   Text="{Binding Txtdireccion, Mode=TwoWay}"
+   Placeholder="Periodicidad"
+   Keyboard="Numeric"
+    Text="{Binding Txtperiodicidad, Mode=TwoWay}"
     Margin="10,5,10,5"
     PlaceholderColor="Black"
                 />
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Activo"
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Aprobado"
                         FontSize="18"
                         Margin="15,0,40,0"
                         TextColor="Black"/>
-                <Switch x:Name="status" IsToggled="{Binding Status}"/>
+                    <Switch x:Name="status" IsToggled="{Binding Statusprestamo}"/>
 
-            </StackLayout>
+                </StackLayout>
 
-            <Button VerticalOptions="Center"
+                <Button VerticalOptions="Center"
 Text="Guardar"
 Padding="8"
 TextColor="AliceBlue"
@@ -78,6 +82,6 @@ CornerRadius="30"
                     Margin="20,20,20,0"
                 Command="{Binding InsertCommand}"
                 />
-        </StackLayout>
-    </Grid>
+            </StackLayout>
+        </Grid>
 </ContentPage>

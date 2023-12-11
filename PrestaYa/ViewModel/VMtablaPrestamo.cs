@@ -1,5 +1,7 @@
-﻿using PrestaYa.firebaseAuth;
+﻿using GalaSoft.MvvmLight.Command;
+using PrestaYa.firebaseAuth;
 using PrestaYa.Model;
+using PrestaYa.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,6 +37,12 @@ namespace PrestaYa.ViewModel
             LoadData();
             TestListViewBindingAsync();
             Navigation = navigation;
+        }
+        public VMtablaPrestamo()
+        {
+            LoadData();
+            TestListViewBindingAsync();
+           
         }
 
         #endregion
@@ -106,9 +114,15 @@ namespace PrestaYa.ViewModel
 
         #endregion
         #region Procesos
+
+        public async Task addprestamopage()
+        {
+            await Navigation.PushAsync(new insertarPrestamo());
+        }
         public async Task LoadData()
         {
-            this.listViewprestamo = await prestamorepository.GetAllClientes();
+            this.listViewprestamo = await prestamorepository.GetAllPrestamos();
+            
         }
 
 
@@ -124,14 +138,46 @@ namespace PrestaYa.ViewModel
                 prestamosCollection.Add(prestamo);
             }
 
+
         }
         public void process() { }
 
 
+
+        private async void addcliente()
+        {
+            List<MPrestamo> registros = await prestamorepository.GetAllPrestamos();
+                
+
+
+
+            var person = new MPrestamo
+            {
+                Id_prestamo = id_prestamo,
+                Monto = monto,
+                Tasa = tasa,
+            };
+
+            await prestamorepository.Addprestamo(person);
+
+
+
+
+        }
+
+
+        public ICommand InsertCommand
+        {
+            get
+            {
+                return new RelayCommand(addcliente);
+            }
+        }
+
         #endregion
         #region Comandos
 
-        //public ICommand Asyncprocesscommand => new Command(async () => await Asyncprocess());
+        public ICommand addprestamocommand => new Command(async () => await addprestamopage());
         public ICommand processcommand => new Command(process);
         #endregion
     }

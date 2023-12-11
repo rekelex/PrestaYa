@@ -4,6 +4,7 @@ using PrestaYa.Model;
 using PrestaYa.Views;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,14 @@ namespace PrestaYa.ViewModel
         PrestamoRepository prestamorepositorio = new PrestamoRepository();
         VMtablaClientes tablaclient = new VMtablaClientes();
         #region Variables
+        MPrestamo selectprestamo;
+        public List<MPrestamo> listaprestamos = new List<MPrestamo>();
         string nombre;
         string telefono;
         string direccion;
         bool status;
+        public string id_prestamo;
+        public string monto;
         #endregion
         #region Constructores
         public VMinsertarCliente(INavigation navigation)
@@ -30,7 +35,32 @@ namespace PrestaYa.ViewModel
 
         #endregion
         #region Objetos
-        
+        public List<MPrestamo> Listaprestamos
+        {
+            get { return listaprestamos; }
+            set { SetValue(ref listaprestamos, value); }
+        }
+        public MPrestamo selectPrestamo
+        {
+            get { return selectprestamo; }
+            set
+            {
+                SetProperty(ref selectprestamo, value);
+                Txtidprestamo = selectprestamo.Id_prestamo;
+                Txtmonto = selectprestamo.Monto;
+            }
+        }
+
+        public string Txtidprestamo
+        {
+            get { return id_prestamo; }
+            set { SetValue(ref id_prestamo, value); }
+        }
+        public string Txtmonto
+        {
+            get { return monto; }
+            set { SetValue(ref monto, value); }
+        }
         public string Txtnombre
         {
             get { return nombre; }
@@ -46,22 +76,29 @@ namespace PrestaYa.ViewModel
             get { return direccion; }
             set => SetValue(ref direccion, value);
         }
-
+        public bool Status
+        {
+            get { return status; }
+            set { if (status != value){ status = value; OnPropertyChanged(nameof(Status)); } }
+        }
         #endregion
         #region Procesos
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private async void addcliente()
         {
             List<Mcliente> registros = await prestamorepositorio.GetAllClientes();
-            int cant_registros = registros.Count();
-            int IdGenerado;
-            if (cant_registros == 0)
-                IdGenerado = 1;
-            else
-                 IdGenerado = cant_registros++;
+            int maxId = registros.Count > 0 ? registros.Max(registro => ExtractNumeroId(registro.Id)) : 0;
+
+
+
             var person = new Mcliente
             {
-                Id = string.Format("CL" + IdGenerado),
+                Id = string.Format("CL{0}", maxId + 1),
                 Nombre = nombre,
                 Telefono = telefono,
                 Direccion = direccion,
@@ -74,6 +111,12 @@ namespace PrestaYa.ViewModel
 
 
 
+        }
+
+        private static int ExtractNumeroId(string id)
+        {
+            string numeroIdString = new string(id.Where(char.IsDigit).ToArray());
+            return int.Parse(numeroIdString);
         }
         public void process() { }
 

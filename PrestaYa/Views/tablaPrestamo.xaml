@@ -4,19 +4,19 @@
              x:Class="PrestaYa.Views.tablaPrestamo">
 
     <Grid
-        RowDefinitions="140,55,*"
+        RowDefinitions="80,55,*"
         BackgroundColor="White"
                  >
 
 
-        <Frame BackgroundColor="#4794AE" Margin="20,10,20,20" HasShadow="False">
+        <Frame BackgroundColor="#4794AE" Margin="20,0,20,5" Padding="0" HeightRequest="30"  HasShadow="False">
             <Grid Grid.Row="0"
 HorizontalOptions="CenterAndExpand"
                   VerticalOptions="CenterAndExpand">
 
                 <StackLayout>
                     <Image Source="logo1"
-               HeightRequest="40"
+               HeightRequest="35"
                WidthRequest="250"
                />
 
@@ -29,7 +29,7 @@ HorizontalOptions="CenterAndExpand"
         <Frame Grid.Row="1"
                     CornerRadius="200"
                HasShadow="False"
-               Margin="20,0,20,0"
+               Margin="18,5,18,5"
                Padding="0"
                BorderColor="Black">
             <SearchBar Placeholder="Buscar" 
@@ -40,7 +40,8 @@ HorizontalOptions="CenterAndExpand"
                        HeightRequest="40"
                        CancelButtonColor="Black"
                        PlaceholderColor="black"
-                       TextColor="Black"/>
+                       TextColor="Black"
+                       Shell.BackgroundColor="White"/>
 
 
         </Frame>
@@ -53,7 +54,6 @@ HorizontalOptions="CenterAndExpand"
 Text="Prestamos"
 FontSize="25"
 TextColor="Black"
-FontAttributes="Italic,Bold"
 HorizontalOptions="CenterAndExpand"/>
 
                 <ListView   ItemsSource="{Binding listViewprestamo}"
@@ -65,9 +65,9 @@ HorizontalOptions="CenterAndExpand"/>
             RefreshCommand="{Binding refreshcommand}"
             
 
-                    Margin="0,20,0,0 "
+                    Margin="0,5,0,0 "
+                            ItemSelected="ListViewName_ItemSelected"
                     SeparatorColor="Black"
-                    
                     >
 
                     <ListView.ItemTemplate>
@@ -75,13 +75,32 @@ HorizontalOptions="CenterAndExpand"/>
                             <ViewCell>
                                 <StackLayout Margin="10,5,10,5"
                                      VerticalOptions="CenterAndExpand">
-                                    <Label Text="{Binding Tasa}"  FontSize="20" FontAttributes="Bold" TextColor="Black" Margin="0"/>
-                                    <Label Text="{Binding Monto}" FontSize="18" TextColor="Black" Margin="0"/>
+                                    <Label Text="{Binding Monto, StringFormat='RD$ {0}'}"  FontSize="20" FontAttributes="Bold" TextColor="Black" Margin="0"/>
+                                    <Label Text="{Binding Tasa, StringFormat='{0}%'}" FontSize="18" TextColor="Black" Margin="0"/>
+                                    <Label Text="{Binding Nombre}" FontSize="18" TextColor="Black" Margin="0"/>
+                                    <Label Text="{Binding Periodicidad, StringFormat='{0} Meses'}" FontSize="18" TextColor="Black" Margin="0"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Frame Grid.Row="3"
+   HasShadow="False"
+   BackgroundColor="White">
+                    <Button
+VerticalOptions="Center"
+Text="Agregar Prestamo"
+Padding="8"
+TextColor="AliceBlue"
+FontSize="18"
+              FontAttributes="Bold,Italic"
+TextTransform="None"
+BackgroundColor="black"
+CornerRadius="30"
+                  Command="{Binding addprestamocommand}"
+
+/>
+                </Frame>
 
             </StackLayout>
         </Frame>

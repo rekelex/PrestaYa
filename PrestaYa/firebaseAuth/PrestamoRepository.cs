@@ -77,23 +77,62 @@ namespace PrestaYa.firebaseAuth
         //obtener todos los datos de los prestamos
         public async Task<List<MPrestamo>> GetAllPrestamos()
         {
-            var result = await firebaseClient.Child("Prestamos").OnceAsync<MPrestamo>();
+            var resultprestamo = await firebaseClient.Child("Prestamos").OnceAsync<MPrestamo>();
 
-            return result.Select(item => new MPrestamo
+            return resultprestamo.Select(item => new MPrestamo
             {
                   
                   Id_prestamo = item.Object.Id_prestamo,
                   Monto = item.Object.Monto,
                   Tasa = item.Object.Tasa,
-                  Periocidad = item.Object.Periocidad, 
-                  Nombre = new Mcliente
-                  {
-                      Id = item.Object.Nombre.Id,
-                      Nombre = item.Object.Nombre.Nombre,
-                  },
+                  Periodicidad = item.Object.Periodicidad, 
+                  Status_prestamo = item.Object.Status_prestamo,
+                  
               }).ToList();
            
         }
+
+        public async Task Addprestamo(MPrestamo _Mprestamo)
+        {
+            await firebaseClient.Child("Prestamos").PostAsync(new MPrestamo()
+            {
+                Id_prestamo = _Mprestamo.Id_prestamo,
+                Monto = _Mprestamo.Monto,
+                Tasa = _Mprestamo.Tasa,
+                Periodicidad = _Mprestamo.Periodicidad,
+                Status_prestamo = _Mprestamo.Status_prestamo
+            });
+        }
+        public async Task Updateprestamo(MPrestamo _Mprestamo)
+        {
+            try
+            {
+
+
+                var toUpdateprestamo = (await firebaseClient
+                  .Child("Prestamos")
+                  .OnceAsync<MPrestamo>()).Where(a => a.Object.Id_prestamo == _Mprestamo.Id_prestamo).FirstOrDefault();
+
+                await firebaseClient
+                  .Child("Prestamos")
+                  .Child(toUpdateprestamo.Key)
+                  .PutAsync(new MPrestamo() { Id_prestamo = _Mprestamo.Id_prestamo, Monto = _Mprestamo.Monto, Tasa = _Mprestamo.Tasa, Status_prestamo = _Mprestamo.Status_prestamo, Periodicidad = _Mprestamo.Periodicidad });
+
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Aceptar");
+            }
+        }
+        public async Task Deleteprestamo(string Id_prestamo)
+        {
+            var toDeletePrestamo = (await firebaseClient
+              .Child("Prestamos")
+              .OnceAsync<MPrestamo>()).Where(a => a.Object.Id_prestamo == Id_prestamo).FirstOrDefault();
+            await firebaseClient.Child("Prestamos").Child(toDeletePrestamo.Key).DeleteAsync();
+
+        }
+
 
 
 

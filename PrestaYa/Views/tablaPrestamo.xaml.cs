@@ -1,4 +1,5 @@
-﻿using PrestaYa.ViewModel;
+﻿using PrestaYa.Model;
+using PrestaYa.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,15 @@ namespace PrestaYa.Views
             else
             {
 
-                ListViewName.ItemsSource = _buscarcliente.prestamosCollection.Where(i => i.Monto.Contains(e.NewTextValue) || i.Tasa.Contains(e.NewTextValue) || i.Periocidad.Contains(e.NewTextValue));
+                ListViewName.ItemsSource = _buscarcliente.prestamosCollection.Where(i => i.Monto.Contains(e.NewTextValue) || i.Tasa.Contains(e.NewTextValue) || i.Periodicidad.Contains(e.NewTextValue));
             }
 
             ListViewName.EndRefresh();
+        }
+
+        private async void ListViewName_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new editarPrestamo(e.SelectedItem as MPrestamo));
         }
     }
 }

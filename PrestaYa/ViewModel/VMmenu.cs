@@ -44,11 +44,11 @@ namespace PrestaYa.ViewModel
         }
         public async Task ayudago()
         {
-            await Navigation.PushAsync(new insertarCliente());
+            await Navigation.PushAsync(new insertarPrestamo());
         }
         public async Task nextin()
         {
-            await Navigation.PushAsync(new tablaPrestamo());
+            await Navigation.PushAsync(new insertarPrestamo());
         }
     
         public void process() { }
